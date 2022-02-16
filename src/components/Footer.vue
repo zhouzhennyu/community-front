@@ -1,18 +1,18 @@
 <template>
     <div class="footer-component">
-        <div class="footer">我是底部组件</div>
+        <p>zzy技术社区 2021 © zzy.com 出品</p>
+        <p>加入团队vue兴趣小组 微信公众号</p>
     </div>
 </template>
 <style lang="scss" scoped>
     .footer-component {
         width: 100%;
-        background-color: grey;
-        color: #fff;
-        .footer {
-            width: 1200px;
-            height: 60px;
-            box-sizing: border-box;
-            margin: auto;
-        }
+        color: #737573;
+        font-size: 14px;
+        text-align: center;
+        line-height: 30px;
+        margin: 50px 0 0;
+        padding: 20px 0 30px;
+        border-top: 1px solid #e2e2e2;
     }
 </style>

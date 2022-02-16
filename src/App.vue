@@ -17,19 +17,5 @@ export default {
 }
 </script>
 <style lang="scss">
-* {
-    padding: 0;
-    margin: 0;
-}
-li {
-    list-style: none;
-}
-img {
-    vertical-align: top;
-}
-.clearfix:after {
-    display: block;
-    content: "";
-    clear: both;
-}
+@import 'assets/css/global.css';
 </style>
