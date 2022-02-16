@@ -46,5 +46,8 @@ img {
 .j-content-between {
   justify-content: space-between;
 }
+.active-panel-this a {
+  color: #5FB878 !important;
+}
 
 

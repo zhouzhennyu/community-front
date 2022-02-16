@@ -1,11 +1,19 @@
 <template>
-    <div></div>
+    <div class="home-container">
+        <zzy-panel />
+        <router-view></router-view>
+    </div>
 </template>
 <script>
+import Panel from '@/components/Panel.vue'
+
 export default {
     name: 'home',
     data() {
         return {}
+    },
+    components: {
+        'zzy-panel': Panel
     },
     methods: {
 
@@ -13,6 +21,5 @@ export default {
     created() {}
 }
 </script>
-<style lang="less" scoped>
-
+<style lang="scss" scoped>
 </style>
