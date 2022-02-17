@@ -26,18 +26,42 @@ export default {
             tag: '',
             catalog: '',
             isTop: false,
-            page: 1,
+            page: 0,
             limit: 20,
             isEnd: false,
-            lists: []
+            lists: [],
+            currentVal: ''
         }
     },
     components: {
         ListItem
     },
+    watch: {
+        currentVal(nVal, oVal) {
+            this.init()
+        },
+        '$route'(nVal, oVal) {
+            console.log(222, nVal, oVal)
+            const catalog = this.$route.params.catalog
+            if (catalog !== '') {
+                this.catalog = catalog
+            }
+            this.init()
+        }
+    },
     methods: {
+        init() {
+            this.page = 0
+            this.lists = []
+            this.isEnd = false
+            this.getPostList()
+        },
         // tab切换
         search(val) {
+            if (typeof val === 'undefined' && this.currentVal === '') {
+                return
+            }
+            this.currentVal = val
             switch (val) {
             // 未结贴
             case 0:
@@ -88,6 +112,7 @@ export default {
                 }
                 this.lists = [...this.lists, ...res.data]
             }).catch(err => {
+                console.log(err)
                 this.$zAlert(err.message)
             })
         },
@@ -100,6 +125,11 @@ export default {
         }
     },
     mounted() {
+        console.log(1111, this.$route)
+        const catalog = this.$route.params.catalog
+        if (catalog) {
+            this.catalog = catalog
+        }
         this.getPostList()
     }
 }

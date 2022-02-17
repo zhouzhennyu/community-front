@@ -1,19 +1,30 @@
 <template>
     <div class="ads-component">
-       <p class="title">温馨通道</p>
-       <div class="content">
-           <a class="item inline-block" href="">百度</a>
-           <a class="item inline-block" href="">阿里</a>
-           <a class="item inline-block" href="">字节</a>
-           <a class="item inline-block" href="">京东</a>
-       </div>
+        <p class="title">温馨通道</p>
+        <div class="content">
+        <a class="item inline-block" target="_blank" :href="item.link" v-for="(item, index) in lists" :key="index">{{ item.title }}</a>
+        </div>
     </div>
 </template>
 <script>
+import { getTips } from '@/api/content.js'
 export default {
     data() {
         return {
+            lists: []
         }
+    },
+    methods: {
+        _getTips() {
+            getTips().then(res => {
+                if (res.code === 200) {
+                    this.lists = res.data
+                }
+            })
+        }
+    },
+    mounted() {
+        this._getTips()
     }
 }
 </script>

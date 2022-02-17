@@ -26,6 +26,9 @@ export default {
     },
     components: {
         ListItem
+    },
+    methods: {
+        nextPage() {}
     }
 }
 </script>
