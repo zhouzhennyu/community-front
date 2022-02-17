@@ -18,9 +18,15 @@
                                 <span v-if="item.isNew" class="new-dot"></span>
                             </a>
                         </router-link>
+                        <template v-if="isLogin">
+                            <li class="inline-block"><router-link to="/user/post">我发表的贴</router-link></li>
+                            <li class="inline-block"><router-link to="/user/sc">我收藏的贴</router-link></li>
+                        </template>
                     </ul>
                 </el-col>
-                <el-col :span="6"><div class="public-tips inline-block">发表新帖</div></el-col>
+                <el-col :span="6" class="t-right">
+                    <div class="public-tips inline-block">发表新帖</div>
+                </el-col>
             </el-row>
         </div>
     </div>
@@ -60,7 +66,8 @@ export default {
                     path: '/index/logs',
                     isNew: false
                 }
-            ]
+            ],
+            isLogin: this.$store.state.isLogin
         }
     }
 }

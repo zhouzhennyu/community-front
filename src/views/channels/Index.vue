@@ -2,6 +2,7 @@
     <div class="index-container">
         <el-row :gutter="20">
             <el-col :span="18">
+                <zzy-top></zzy-top>
                 <zzy-list></zzy-list>
             </el-col>
             <el-col :span="6">
@@ -21,6 +22,7 @@ import Sign from '@/components/sidebar/Sign.vue'
 import HotList from '@/components/sidebar/HotList.vue'
 import Links from '@/components/sidebar/Links.vue'
 import List from '@/components/content/List.vue'
+import Top from '@/components/content/Top.vue'
 export default {
     data() {
         return {}
@@ -31,7 +33,8 @@ export default {
         'zzy-sign': Sign,
         'zzy-hotlist': HotList,
         'zzy-links': Links,
-        'zzy-list': List
+        'zzy-list': List,
+        'zzy-top': Top
     }
 }
 </script>

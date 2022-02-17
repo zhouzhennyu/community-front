@@ -5,7 +5,6 @@ i{font-style: normal;}
 * {
   padding: 0;
   margin: 0;
-  box-sizing: border-box;
 }
 li {
   list-style: none;
@@ -46,8 +45,20 @@ img {
 .j-content-between {
   justify-content: space-between;
 }
-.active-panel-this a {
+.link-active a {
+  color: #5FB878 !important;
+}
+a.link-active {
   color: #5FB878 !important;
 }
 
+.t-center {
+  text-align: center;
+}
+.t-right {
+  text-align: right;
+}
+.t-left {
+  text-align: left;
+}
 

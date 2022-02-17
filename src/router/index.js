@@ -53,7 +53,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-    linkExactActiveClass: 'active-panel-this',
+    linkExactActiveClass: 'link-active',
     routes
 })
 

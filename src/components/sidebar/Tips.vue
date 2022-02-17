@@ -46,6 +46,7 @@ export default {
                 border: 1px solid #E9E9E9;
                 border-bottom: none;
                 border-left: none;
+                box-sizing: border-box;
             }
         }
     }
