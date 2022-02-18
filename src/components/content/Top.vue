@@ -5,30 +5,22 @@
                 <span>置顶</span>
             </div>
         </div>
-        <list-item :lists="lists" @nextPage="nextPage" :isShow="false"></list-item>
+        <list-item :lists="lists" :isShow="false"></list-item>
     </div>
 </template>
 <script>
 import ListItem from '@/components/content/ListItem.vue'
+import listMixin from '@/mixin/list.js'
 export default {
+    name: 'top',
+    mixins: [listMixin],
     data() {
         return {
-            status: '',
-            sort: 'created',
-            tag: '',
-            catalog: '',
-            isTop: false,
-            page: 1,
-            limit: 20,
-            isEnd: false,
-            lists: []
+            isTop: 1
         }
     },
     components: {
         ListItem
-    },
-    methods: {
-        nextPage() {}
     }
 }
 </script>

@@ -1,28 +1,28 @@
 <template>
     <div class="register-container">
-        <ul class="nav clearfix">
-            <li>
+        <ul class="nav">
+            <li class="inline-block">
                 <router-link :to="{ name: 'login'}">登录</router-link>
             </li>
-            <li>
+            <li class="inline-block">
                 <router-link :to="{ name: 'register'}">注册</router-link>
             </li>
         </ul>
         <el-form ref="form" :model="form" :rules="rules" label-width="80px">
             <el-form-item label="邮箱" prop="username">
-                <el-input v-model="form.username"></el-input>
+                <el-input class="input-style" v-model="form.username"></el-input>
             </el-form-item>
             <el-form-item label="昵称" prop="nickname">
-                <el-input v-model="form.nickname"></el-input>
+                <el-input class="input-style" v-model="form.nickname"></el-input>
             </el-form-item>
             <el-form-item label="密码" prop="password">
-                <el-input v-model="form.password" type="password"></el-input>
+                <el-input class="input-style" v-model="form.password" type="password"></el-input>
             </el-form-item>
             <el-form-item label="确认密码" prop="againPass">
-                <el-input v-model="form.againPass"></el-input>
+                <el-input class="input-style" v-model="form.againPass"></el-input>
             </el-form-item>
             <el-form-item label="验证码" prop="code">
-                <el-input v-model="form.code"></el-input>
+                <el-input class="input-style" v-model="form.code"></el-input>
             </el-form-item>
             <div class="captcha" @click="getCaptcha()" v-html="captcha"></div>
             <el-form-item class="button-content">
@@ -109,15 +109,21 @@ export default {
 </script>
 <style lang="scss" scoped>
 .register-container {
+    padding: 16px 16px 32px 16px;
+    background: #fff;
     .nav {
-
         li {
-            float: left;
             width: 50px;
             line-height: 50px;
             text-align: center;
             margin: 0 30px;
+            a {
+                color: #333;
+            }
         }
+    }
+    .input-style {
+        width: 300px;
     }
 }
 </style>

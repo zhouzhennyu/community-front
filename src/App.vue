@@ -1,7 +1,9 @@
 <template>
     <div id="app">
         <imooc-header></imooc-header>
-        <router-view></router-view>
+        <div class="container">
+            <router-view></router-view>
+        </div>
         <imooc-footer></imooc-footer>
     </div>
 </template>
@@ -18,4 +20,8 @@ export default {
 </script>
 <style lang="scss">
 @import 'assets/css/global.css';
+.container {
+    width: 1200px;
+    margin: 0 auto;
+}
 </style>

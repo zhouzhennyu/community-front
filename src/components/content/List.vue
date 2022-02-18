@@ -17,17 +17,18 @@
 </template>
 <script>
 import ListItem from '@/components/content/ListItem.vue'
-import { getList } from '@/api/content.js'
+// import { getList } from '@/api/content.js'
+import listMixin from '@/mixin/list.js'
 export default {
+    name: 'list',
+    mixins: [listMixin],
     data() {
         return {
             status: '',
             sort: 'created',
             tag: '',
             catalog: '',
-            isTop: false,
             page: 0,
-            limit: 20,
             isEnd: false,
             lists: [],
             currentVal: ''
@@ -41,7 +42,6 @@ export default {
             this.init()
         },
         '$route'(nVal, oVal) {
-            console.log(222, nVal, oVal)
             const catalog = this.$route.params.catalog
             if (catalog !== '') {
                 this.catalog = catalog
@@ -54,7 +54,7 @@ export default {
             this.page = 0
             this.lists = []
             this.isEnd = false
-            this.getPostList()
+            this._getList()
         },
         // tab切换
         search(val) {
@@ -91,46 +91,7 @@ export default {
                 this.status = ''
                 this.tag = ''
             }
-        },
-
-        // 获取帖子列表
-        getPostList() {
-            if (this.isEnd) return
-            const params = {
-                catalog: this.catalog,
-                isTop: this.isTop,
-                page: this.page,
-                limit: this.limit,
-                sort: this.sort,
-                tag: this.tag,
-                status: this.status
-            }
-
-            getList(params).then(res => {
-                if (res.data.length < 20) {
-                    this.isEnd = true
-                }
-                this.lists = [...this.lists, ...res.data]
-            }).catch(err => {
-                console.log(err)
-                this.$zAlert(err.message)
-            })
-        },
-
-        // 下一页
-        nextPage() {
-            console.log('nextPage')
-            this.page++
-            this.getPostList()
         }
-    },
-    mounted() {
-        console.log(1111, this.$route)
-        const catalog = this.$route.params.catalog
-        if (catalog) {
-            this.catalog = catalog
-        }
-        this.getPostList()
     }
 }
 </script>
