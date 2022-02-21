@@ -40,18 +40,24 @@ export default {
             const reg = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
             if (!reg.test(value)) {
                 return callback(new Error('请输入正确的邮箱'))
+            } else {
+                callback()
             }
         }
         const passwordValidator = (rule, value, callback) => {
             if (!value) return callback(new Error('请输入密码'))
             if (value.length < 6) {
                 callback(new Error('密码长度必须至少为6个字符'))
+            } else {
+                callback()
             }
         }
         const codeValidator = (rule, value, callback) => {
             if (!value) return callback(new Error('请输入验证码'))
             if (value.length < 4) {
                 callback(new Error('验证码必须为4个字符'))
+            } else {
+                callback()
             }
         }
 
@@ -77,6 +83,7 @@ export default {
     },
     methods: {
         submitForm() {
+            console.log(111)
             this.$refs.form.validate((valid) => {
                 console.log('submitForm', valid)
                 if (valid) {

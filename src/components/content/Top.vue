@@ -1,5 +1,5 @@
 <template>
-    <div class="top-component">
+    <div class="top-component" v-if="lists.length">
         <div class="list-panel flex j-content-between">
             <div class="flex">
                 <span>置顶</span>
