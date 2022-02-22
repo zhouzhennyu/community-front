@@ -1,15 +1,37 @@
 <template>
     <div class="link-component">
         <p class="title">友情链接</p>
-       <div class="content">
-       </div>
+        <div class="content">
+            <a
+                :href="item.link"
+                v-for="(item, index) in lists"
+                :key="index"
+                target="_blank"
+                class="link-title">
+               {{ item.title }}
+            </a>
+        </div>
     </div>
 </template>
 <script>
+import { getLinks } from '@/api/content.js'
 export default {
     data() {
         return {
+            lists: []
         }
+    },
+    methods: {
+        _getLinks() {
+            getLinks().then(res => {
+                if (res.code === 200) {
+                    this.lists = res.data
+                }
+            })
+        }
+    },
+    mounted() {
+        this._getLinks()
     }
 }
 </script>
@@ -28,6 +50,15 @@ export default {
         }
         .content {
             padding: 16px 0;
+            .link-title {
+                color: #333;
+                font-size: 14px;
+                line-height: 24px;
+                margin-right: 24px;
+                &:hover{
+                    color: #009688;
+                }
+            }
         }
     }
 </style>

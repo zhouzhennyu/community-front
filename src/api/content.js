@@ -11,18 +11,19 @@ const getTips = () => {
     return axios.get('/public/tips')
 }
 
-// 本周热议
-const topWeek = () => {
-    return axios.get('/public/topWeek')
-}
-
 // 友情链接
 const getLinks = () => {
     return axios.get('/public/links')
 }
+
+// 本周热议
+const getTopWeek = () => {
+    return axios.get('/public/topWeek')
+}
+
 export {
     getList,
     getTips,
-    topWeek,
+    getTopWeek,
     getLinks
 }

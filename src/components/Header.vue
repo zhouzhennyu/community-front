@@ -11,16 +11,52 @@
                     </ul>
                 </el-col>
                 <el-col :span="6">
-                    <div class="login-container">
-                        <!-- <span><i class="el-icon-user-solid"></i></span> -->
-                        <router-link :to="{ name: 'login'}">登录</router-link>
-                        <router-link :to="{ name: 'register'}">注册</router-link>
-                    </div>
+                    <template v-if="!isLogin">
+                        <div class="login-container">
+                            <!-- <span><i class="el-icon-user-solid"></i></span> -->
+                            <router-link :to="{ name: 'login'}">登录</router-link>
+                            <router-link :to="{ name: 'register'}">注册</router-link>
+                        </div>
+                    </template>
+                    <template v-else>
+                        <div class="login-container">
+                            <el-dropdown>
+                                <div class="user-content">
+                                    <span class="user-name">{{ userInfo.nickname }}</span>
+                                    <img class="user-pic" :src="userInfo.pic" alt="">
+                                </div>
+                                <el-dropdown-menu slot="dropdown">
+                                    <el-dropdown-item>基本设置</el-dropdown-item>
+                                    <el-dropdown-item>我的消息</el-dropdown-item>
+                                    <el-dropdown-item>我的主页</el-dropdown-item>
+                                    <el-dropdown-item>退出</el-dropdown-item>
+                                </el-dropdown-menu>
+                            </el-dropdown>
+                        </div>
+                    </template>
                 </el-col>
             </el-row>
         </div>
     </div>
 </template>
+<script>
+export default {
+    data() {
+        return {
+        }
+    },
+    computed: {
+        // 登录状态
+        isLogin() {
+            return this.$store.state.isLogin
+        },
+        // 用户信息
+        userInfo() {
+            return this.$store.state.userInfo
+        }
+    }
+}
+</script>
 <style lang="scss" scoped>
     .header-component {
         width: 100%;
@@ -50,6 +86,19 @@
                 a {
                     color: rgba(255,255,255,.7);
                     padding: 0 20px;
+                }
+                .user-content {
+                    cursor: pointer;
+                }
+                .user-name {
+                    color: rgba(255,255,255,.7);
+                }
+                .user-pic {
+                    width: 36px;
+                    height: 36px;
+                    margin-left: 10px;
+                    border-radius: 100%;
+                    vertical-align: middle;
                 }
             }
         }

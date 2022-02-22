@@ -93,11 +93,14 @@ export default {
                         ...this.form
                     }).then(res => {
                         if (res.code === 200) {
+                            this.$store.commit('setUserInfo', res.data)
+                            this.$store.commit('setIsLogin', true)
                             this.form.username = ''
                             this.form.password = ''
                             this.form.code = ''
                             console.log('login successfully', res)
-                            this.$zAlert('登录成功')
+                            this.$router.push({ name: 'index' })
+                            // this.$zAlert('登录成功')
                         } else {
                             this.$zAlert(res.msg)
                         }

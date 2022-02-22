@@ -2,7 +2,14 @@
     <div class="ads-component">
         <p class="title">温馨通道</p>
         <div class="content">
-        <a class="item inline-block" target="_blank" :href="item.link" v-for="(item, index) in lists" :key="index">{{ item.title }}</a>
+            <a
+                class="item inline-block"
+                target="_blank"
+                :href="item.link"
+                v-for="(item, index) in lists"
+                :key="index">
+                {{ item.title }}
+            </a>
         </div>
     </div>
 </template>
