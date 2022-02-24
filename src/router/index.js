@@ -7,6 +7,13 @@ const Register = () => import(/* webpackChunkName: "Register" */ '@/views/Regist
 const Home = () => import(/* webpackChunkName: "home" */ '@/views/Home.vue')
 const Index = () => import(/* webpackChunkName: "Index" */ '@/views/channels/Index.vue')
 const Template1 = () => import(/* webpackChunkName: "Template1" */ '@/views/channels/Template1.vue')
+const Center = () => import(/* webpackChunkName: "Center" */ '@/views/Center.vue')
+const UserCenter = () => import(/* webpackChunkName: "UserCenter" */ '@/components/user/Center.vue')
+const Msg = () => import(/* webpackChunkName: "UserCenter" */ '@/components/user/Msg.vue')
+const Others = () => import(/* webpackChunkName: "UserCenter" */ '@/components/user/Others.vue')
+const Posts = () => import(/* webpackChunkName: "UserCenter" */ '@/components/user/Posts.vue')
+const Settings = () => import(/* webpackChunkName: "UserCenter" */ '@/components/user/Settings.vue')
+const UserHome = () => import(/* webpackChunkName: "UserCenter" */ '@/views/User.vue')
 
 Vue.use(VueRouter)
 
@@ -49,11 +56,47 @@ const routes = [
                 next('/login')
             }
         }
+    },
+    {
+        path: 'user-home',
+        name: 'user-home',
+        component: UserHome
+    },
+    {
+        path: '/center',
+        component: Center,
+        children: [
+            {
+                path: '',
+                name: 'center',
+                component: UserCenter
+            },
+            {
+                path: 'settings',
+                name: 'settings',
+                component: Settings
+            },
+            {
+                path: 'posts',
+                name: 'posts',
+                component: Posts
+            },
+            {
+                path: 'msg',
+                name: 'msg',
+                component: Msg
+            },
+            {
+                path: 'others',
+                name: 'others',
+                component: Others
+            }
+        ]
     }
 ]
 
 const router = new VueRouter({
-    linkExactActiveClass: 'link-active',
+    // linkExactActiveClass: '',
     routes
 })
 

@@ -4,12 +4,13 @@
             <el-row :gutter="20">
                 <el-col :span="18">
                     <ul class="panel-nav inline-block">
-                        <router-link tag="li" class="inline-block" to="/">
+                        <!-- <router-link tag="li" class="inline-block" to="/" active-class="panel-nav-active">
                             <a href="/">首页</a>
-                        </router-link>
+                        </router-link> -->
                         <router-link
                             tag="li"
                             class="inline-block"
+                            exact-active-class="panel-nav-active"
                             v-for="(item, index) in panels" :key="index"
                             :to="item.path"
                         >
@@ -36,6 +37,11 @@ export default {
     data() {
         return {
             panels: [
+                {
+                    name: '首页',
+                    path: '/',
+                    isNew: false
+                },
                 {
                     name: '提问',
                     path: '/index/ask',
@@ -102,6 +108,9 @@ export default {
                     border-radius: 50%;
                     background: red;
                 }
+            }
+            .panel-nav-active a {
+                color: #5FB878;
             }
         }
         .public-tips {

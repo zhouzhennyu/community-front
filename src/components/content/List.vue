@@ -108,6 +108,9 @@ export default {
                 color: #666;
                 font-size: 14px;
             }
+            .link-active {
+                color: #5FB878;
+            }
             .gap-line {
                 display: inline-block;
                 height: 10px;
