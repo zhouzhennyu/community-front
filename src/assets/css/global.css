@@ -3,56 +3,75 @@ html,body{overflow-x: hidden;}
 html{background-color: #F2F2F2;}
 i{font-style: normal;}
 * {
-  padding: 0;
-  margin: 0;
+    padding: 0;
+    margin: 0;
 }
 li {
-  list-style: none;
+    list-style: none;
 }
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 img {
-  vertical-align: top;
+    vertical-align: top;
 }
 
 .block {
-  display: block;
+    display: block;
 }
 
 .inline-block {
-  display: inline-block;
+    display: inline-block;
 }
 
 .flex {
-  display: flex;
+    display: flex;
 }
 .flex-direction {
-  flex-direction: column;
+    flex-direction: column;
 }
 .a-items-center {
-  align-items: center;
+    align-items: center;
 }
 .a-items-end {
-  align-items: flex-end;
+    align-items: flex-end;
 }
 .j-content-center {
-  justify-content: center;
+    justify-content: center;
 }
 .j-content-around {
-  justify-content: space-around;
+    justify-content: space-around;
 }
 .j-content-between {
-  justify-content: space-between;
+    justify-content: space-between;
+}
+
+.flex-wrap {
+    flex-wrap: wrap;
+}
+.flex-none {
+    flex: none;
 }
 
 .t-center {
-  text-align: center;
+    text-align: center;
 }
 .t-right {
-  text-align: right;
+    text-align: right;
 }
 .t-left {
-  text-align: left;
+    text-align: left;
 }
 
+
+.center-container {
+    color: #333;
+    font-size: 14px;
+    padding: 20px;
+    min-height: 600px;
+    box-sizing: border-box;
+    border-radius: 2px;
+    background-color: #fff;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 5%);
+    transition: all .2s;
+}

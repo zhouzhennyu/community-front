@@ -1,5 +1,5 @@
 <template>
-    <div class="center-container">
+    <div class="user-center-container">
         <el-row :gutter="20">
             <el-col :span="4">
                 <ul class="menu-container t-center">
@@ -52,7 +52,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.center-container {
+.user-center-container {
     margin-top: 15px;
     .menu-container {
         color: #fff;
