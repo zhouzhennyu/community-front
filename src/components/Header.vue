@@ -20,16 +20,16 @@
                     </template>
                     <template v-else>
                         <div class="login-container">
-                            <el-dropdown>
+                            <el-dropdown @command="handleCommand">
                                 <div class="user-content">
                                     <span class="user-name">{{ userInfo.nickname }}</span>
                                     <img class="user-pic" :src="userInfo.pic" alt="">
                                 </div>
                                 <el-dropdown-menu slot="dropdown">
-                                    <el-dropdown-item>基本设置</el-dropdown-item>
-                                    <el-dropdown-item>我的消息</el-dropdown-item>
-                                    <el-dropdown-item>我的主页</el-dropdown-item>
-                                    <el-dropdown-item>退出</el-dropdown-item>
+                                    <el-dropdown-item><router-link :to="{name: 'settings'}">基本设置</router-link></el-dropdown-item>
+                                    <el-dropdown-item><router-link :to="{name: 'msg'}">我的消息</router-link></el-dropdown-item>
+                                    <el-dropdown-item><router-link :to="{name: 'user-home'}">我的主页</router-link></el-dropdown-item>
+                                    <el-dropdown-item command="logout">退出</el-dropdown-item>
                                 </el-dropdown-menu>
                             </el-dropdown>
                         </div>
@@ -53,6 +53,20 @@ export default {
         // 用户信息
         userInfo() {
             return this.$store.state.userInfo
+        }
+    },
+    methods: {
+        handleCommand(command) {
+            console.log('logout------', command)
+            if (command === 'logout') {
+                this.$zConfirm('确定要退出吗', () => {
+                    localStorage.clear()
+                    this.$store.commit('setIsLogin', false)
+                    this.$store.commit('setUserInfo', {})
+                    this.$store.commit('setToken', '')
+                    this.$router.push({ name: 'index' }, () => {})
+                }, () => {})
+            }
         }
     }
 }

@@ -10,12 +10,13 @@ zAlert.install = (Vue) => {
     document.body.appendChild(instance.$el)
 
     Vue.prototype.$zAlert = (msg, success) => {
+        instance.type = 'alert'
         instance.msg = msg
         instance.isShow = true
     }
 
-    Vue.prototype.$zConfirm = (msg, type, success, cancel) => {
-        instance.type = type
+    Vue.prototype.$zConfirm = (msg, success, cancel) => {
+        instance.type = 'confirm'
         instance.msg = msg
         if (typeof success !== 'undefined') {
             instance.success = success

@@ -2,16 +2,16 @@
     <div class="list-item-component">
         <ul class="list-content">
             <li class="list-item flex a-items-center" v-for="(item, index) in items" :key="index">
-                <router-link class="user-avatar" :to="{name: 'home', params: {uid: item.uid._id}}">
+                <router-link class="user-avatar" :to="{name: 'user-home', params: {uid: item.uid._id}}">
                     <img :src="item.uid.pic" alt="">
                 </router-link>
                 <div class="item-info">
                     <div class="info-top">
                         <span class="badge">{{ item.catalog }}</span>
-                        <router-link class="title" :to="{name: 'detail', params: {tid: item._id}}">{{ item.title }}</router-link>
+                        <router-link class="title" :to="{ name: 'detail', params: { tid: item._id } }">{{ item.title }}</router-link>
                     </div>
                     <div class="info-bottom flex">
-                        <router-link :to="{name: 'home', params: {uid: item.uid._id}}"><span>{{ item.uid.name }}</span></router-link>
+                        <router-link :to="{name: 'user-home', params: {uid: item.uid._id}}"><span>{{ item.uid.name }}</span></router-link>
                         <span class="">{{ item.created }}</span>
                         <span v-if="item.fav">粉丝：{{ item.fav }}</span>
                     </div>

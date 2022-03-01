@@ -95,6 +95,7 @@ export default {
                         if (res.code === 200) {
                             this.$store.commit('setUserInfo', res.data)
                             this.$store.commit('setIsLogin', true)
+                            this.$store.commit('setToken', res.token)
                             this.form.username = ''
                             this.form.password = ''
                             this.form.code = ''

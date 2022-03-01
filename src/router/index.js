@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import store from '@/store'
+import dayjs from 'dayjs'
+import jsonwebtoken from 'jsonwebtoken'
 
 const Login = () => import(/* webpackChunkName: "Login" */ '@/views/Login.vue')
 const Forget = () => import(/* webpackChunkName: "Forget" */ '@/views/Forget.vue')
@@ -20,7 +23,6 @@ Vue.use(VueRouter)
 const routes = [
     {
         path: '/',
-        name: 'home',
         component: Home,
         children: [
             {
@@ -58,13 +60,14 @@ const routes = [
         }
     },
     {
-        path: 'user-home',
+        path: '/user-home',
         name: 'user-home',
         component: UserHome
     },
     {
         path: '/center',
         component: Center,
+        meta: { requiresAuth: true },
         children: [
             {
                 path: '',
@@ -98,6 +101,33 @@ const routes = [
 const router = new VueRouter({
     // linkExactActiveClass: '',
     routes
+})
+
+router.beforeEach((to, from, next) => {
+    const token = localStorage.getItem('token')
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'))
+    if (token !== '' && userInfo !== null) {
+        const payload = jsonwebtoken.decode(token)
+        if (dayjs().isBefore(dayjs(payload.exp * 1000))) {
+            store.commit('setIsLogin', true)
+            store.commit('setUserInfo', userInfo)
+            store.commit('setToken', token)
+        } else {
+            localStorage.clear()
+        }
+    }
+    // 需要登录才能访问的页面
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        const isLogin = store.state.isLogin
+        if (isLogin) {
+            next()
+        } else {
+            next('/login')
+        }
+    } else {
+        // 不需要登录就可以访问的页面
+        next()
+    }
 })
 
 export default router
