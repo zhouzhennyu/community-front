@@ -1,6 +1,6 @@
 <template>
     <div class="center-container">
-        <h2>其他设置</h2>
+        <h2>正在开发中...</h2>
     </div>
 </template>
 <script>
