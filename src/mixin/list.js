@@ -26,6 +26,7 @@ export default {
                 status: this.status
             }
             getList(params).then(res => {
+                console.log('文章列表-------', res)
                 if (res.data.length < 20) {
                     this.isEnd = true
                 }

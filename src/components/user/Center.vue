@@ -13,8 +13,8 @@
                 <div class="flex j-content-between count-panel-content">
                     <p class="count-panel">
                         <span>签到</span><i class="gap"></i>
-                        <span class="acitve">说明</span><i class="gap"></i>
-                        <span class="acitve">活跃榜</span>
+                        <span class="acitve" @click="showSignModal(1)">说明</span><i class="gap"></i>
+                        <span class="acitve" @click="showSignModal(2)">活跃榜</span>
                     </p>
                     <p class="count-num">已经连续签到<span class="red">1</span>天</p>
                 </div>
@@ -35,11 +35,19 @@
                 </li>
             </ul>
         </div>
+        <sign-info :isShow="showSignInfoModal" @closeSignInfoModal="closeSignModal"></sign-info>
+        <sign-list :isShow="showSignListModal" @closeSignListModal="closeSignModal"></sign-list>
     </div>
 </template>
 <script>
+import SignInfo from '@/components/sidebar/SignInfo.vue'
+import SignList from '@/components/sidebar/SignList.vue'
 export default {
     name: 'user-center',
+    components: {
+        SignInfo,
+        SignList
+    },
     data() {
         return {
             profiles: [
@@ -55,17 +63,38 @@ export default {
                 { name: '关注公众号', link: '' },
                 { name: '文档', link: '' },
                 { name: '后台管理', link: '' }
-            ]
+            ],
+            showSignInfoModal: false,
+            showSignListModal: false
+        }
+    },
+    methods: {
+        showSignModal(val) {
+            console.log(val)
+            if (val === 1) {
+                this.showSignInfoModal = true
+            } else if (val === 2) {
+                this.showSignListModal = true
+            }
+        },
+        closeSignModal(val) {
+            if (val === 1) {
+                this.showSignInfoModal = false
+            } else if (val === 2) {
+                this.showSignListModal = false
+            }
         }
     }
 }
 </script>
 <style lang="scss" scoped>
     .title {
-        background-color: #f8f8f8;
-        color: #666;
-        padding: 10px 15px;
+        height: 42px;
+        line-height: 42px;
+        padding: 0 20px;
+        color: #333;
         margin-bottom: 20px;
+        background-color: #f8f8f8;
     }
     .user-info {
         .user-info-left, .user-info-right {
